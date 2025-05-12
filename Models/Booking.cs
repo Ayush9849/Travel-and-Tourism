@@ -16,11 +16,18 @@ namespace Travel_and_Tourism.Models
         [ForeignKey("TourId")]
         public TourPackage TourPackage { get; set; }
 
-        [Required]
-        public int TouristId { get; set; }
+        //[Required]
+        //public int TouristId { get; set; }
 
+        //[ForeignKey("UserId")]
+        //public User Tourist { get; set; }
+
+        //[Required]
+        //[ForeignKey("UserId")]
+        //public int TouristId { get; set; }
+        [Required]
         [ForeignKey("UserId")]
-        public User Tourist { get; set; }
+        public RegisteredUser UserId { get; set; }
 
         public DateTime BookingDate { get; set; }
 
@@ -28,6 +35,9 @@ namespace Travel_and_Tourism.Models
 
         public string PaymentStatus { get; set; }
 
-        public Feedback Feedback { get; set; }
+        public string Email { get; set; }
+
+
+        //public Feedback Feedback { get; set; }
     }
 }

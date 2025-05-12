@@ -21,7 +21,7 @@ namespace Travel_and_Tourism.Controllers
         // GET: Bookings
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Bookings.Include(b => b.Tourist).Include(b => b.TourPackage);
+            var applicationDbContext = _context.Bookings.Include(b => b.UserId).Include(b => b.TourPackage);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -34,7 +34,7 @@ namespace Travel_and_Tourism.Controllers
             }
 
             var booking = await _context.Bookings
-                .Include(b => b.Tourist)
+                .Include(b => b.UserId)
                 .Include(b => b.TourPackage)
                 .FirstOrDefaultAsync(m => m.BookingId == id);
             if (booking == null)
@@ -66,7 +66,7 @@ namespace Travel_and_Tourism.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TouristId"] = new SelectList(_context.Users, "UserId", "Email", booking.TouristId);
+            ViewData["TouristId"] = new SelectList(_context.Users, "UserId", "Email", booking.UserId);
             ViewData["TourId"] = new SelectList(_context.TourPackages, "TourId", "Title", booking.TourId);
             return View(booking);
         }
@@ -84,7 +84,7 @@ namespace Travel_and_Tourism.Controllers
             {
                 return NotFound();
             }
-            ViewData["TouristId"] = new SelectList(_context.Users, "UserId", "Email", booking.TouristId);
+            ViewData["TouristId"] = new SelectList(_context.Users, "UserId", "Email", booking.UserId);
             ViewData["TourId"] = new SelectList(_context.TourPackages, "TourId", "Title", booking.TourId);
             return View(booking);
         }
@@ -121,7 +121,7 @@ namespace Travel_and_Tourism.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TouristId"] = new SelectList(_context.Users, "UserId", "Email", booking.TouristId);
+            ViewData["TouristId"] = new SelectList(_context.Users, "UserId", "Email", booking.UserId);
             ViewData["TourId"] = new SelectList(_context.TourPackages, "TourId", "Title", booking.TourId);
             return View(booking);
         }
@@ -135,7 +135,7 @@ namespace Travel_and_Tourism.Controllers
             }
 
             var booking = await _context.Bookings
-                .Include(b => b.Tourist)
+                .Include(b => b.UserId)
                 .Include(b => b.TourPackage)
                 .FirstOrDefaultAsync(m => m.BookingId == id);
             if (booking == null)

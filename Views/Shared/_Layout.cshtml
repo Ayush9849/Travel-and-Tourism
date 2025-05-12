@@ -1,16 +1,14 @@
 ﻿<html>
-
-    <head>
-        @* <link rel="stylesheet" href="~/Content/site.css" /> *@
-        <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
-        <script src="~/Script/bootstrap.min.js"></script>
-        <style>
-            @RenderSection("Style", false)
-        </style>
-    </head>
+<head>
+    <link rel="stylesheet" href="~/Content/site.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <script src="~/Script/bootstrap.min.js"></script>
+    <style>
+        @RenderSection("Style", false)
+    </style>
+</head>
 
 <body>
-
     <div class="main-content">
         @RenderBody()
     </div>
@@ -20,9 +18,7 @@
     </footer>
 
     <script>
-            @RenderSection("Scipt", false);
+        @RenderSection("Scripts", false)
     </script>
-
 </body>
 </html>
-

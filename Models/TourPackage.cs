@@ -34,6 +34,7 @@ namespace Travel_and_Tourism.Models
 
         public string ImageUrl { get; set; }
 
+
         //public ICollection<Booking> Bookings { get; set; }
     }
 }

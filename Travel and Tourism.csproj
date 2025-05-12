@@ -12,6 +12,14 @@
     <Compile Remove="Migrations\20250424014353_InitialCreate.Designer.cs" />
     <Compile Remove="Migrations\20250511174820_test.cs" />
     <Compile Remove="Migrations\20250511174820_test.Designer.cs" />
+    <Compile Remove="Migrations\20250512070205_ayush.cs" />
+    <Compile Remove="Migrations\20250512070205_ayush.Designer.cs" />
+    <Compile Remove="Migrations\20250512095221_YourMigrationName.cs" />
+    <Compile Remove="Migrations\20250512095221_YourMigrationName.Designer.cs" />
+    <Compile Remove="Migrations\20250512100138_added feild in booking model.cs" />
+    <Compile Remove="Migrations\20250512100138_added feild in booking model.Designer.cs" />
+    <Compile Remove="Migrations\20250512104031_EmailChanged.cs" />
+    <Compile Remove="Migrations\20250512104031_EmailChanged.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Travel_and_Tourism.Models;
 
@@ -11,9 +12,11 @@ using Travel_and_Tourism.Models;
 namespace Travel_and_Tourism.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250512095221_YourMigrationName")]
+    partial class YourMigrationName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,10 +76,6 @@ namespace Travel_and_Tourism.Migrations
                     b.Property<DateTime>("BookingDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PaymentStatus")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -91,14 +90,11 @@ namespace Travel_and_Tourism.Migrations
                     b.Property<int>("TouristId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("BookingId");
 
                     b.HasIndex("TourId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("TouristId");
 
                     b.ToTable("Bookings");
                 });
@@ -129,7 +125,8 @@ namespace Travel_and_Tourism.Migrations
 
                     b.HasKey("FeedbackId");
 
-                    b.HasIndex("BookingId");
+                    b.HasIndex("BookingId")
+                        .IsUnique();
 
                     b.HasIndex("TouristId");
 
@@ -247,22 +244,22 @@ namespace Travel_and_Tourism.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RegisteredUser", "RegisteredUser")
+                    b.HasOne("Travel_and_Tourism.Models.User", "Tourist")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("TouristId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("RegisteredUser");
-
                     b.Navigation("TourPackage");
+
+                    b.Navigation("Tourist");
                 });
 
             modelBuilder.Entity("Travel_and_Tourism.Models.Feedback", b =>
                 {
                     b.HasOne("Travel_and_Tourism.Models.Booking", "Booking")
-                        .WithMany()
-                        .HasForeignKey("BookingId")
+                        .WithOne("Feedback")
+                        .HasForeignKey("Travel_and_Tourism.Models.Feedback", "BookingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -297,6 +294,12 @@ namespace Travel_and_Tourism.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Travel_and_Tourism.Models.Booking", b =>
+                {
+                    b.Navigation("Feedback")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Travel_and_Tourism.Models.TravelAgency", b =>
