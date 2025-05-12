@@ -1,0 +1,28 @@
+﻿<html>
+
+    <head>
+        @* <link rel="stylesheet" href="~/Content/site.css" /> *@
+        <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+        <script src="~/Script/bootstrap.min.js"></script>
+        <style>
+            @RenderSection("Style", false)
+        </style>
+    </head>
+
+<body>
+
+    <div class="main-content">
+        @RenderBody()
+    </div>
+
+    <footer class="footer text-center">
+        © 2025 Tourism Platform
+    </footer>
+
+    <script>
+            @RenderSection("Scipt", false);
+    </script>
+
+</body>
+</html>
+
